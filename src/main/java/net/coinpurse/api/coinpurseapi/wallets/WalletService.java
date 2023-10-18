@@ -19,7 +19,7 @@ public class WalletService {
         return walletRepository.findAll();
     }
 
-    public Optional<Wallet> getOneWallet(ObjectId id) {
+    public Optional<Wallet> getWallet(ObjectId id) {
         return walletRepository.findById(id);
     }
 

@@ -24,7 +24,7 @@ public class WalletController {
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Wallet>> getOneWallet(@PathVariable ObjectId id) {
         try {
-            return new ResponseEntity<Optional<Wallet>>(walletService.getOneWallet(id), HttpStatus.OK);
+            return new ResponseEntity<Optional<Wallet>>(walletService.getWallet(id), HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("Error: " + e);
             return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
