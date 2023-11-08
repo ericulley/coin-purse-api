@@ -3,24 +3,24 @@ package net.coinpurse.api.coinpurseapi.users;
 import org.bson.types.ObjectId;
 
 public class AuthUser {
-    private ObjectId user;
+    private String user;
     private String userName;
     private String email;
     private Boolean isAuthorized;
 
     public AuthUser(ObjectId user, String userName, String email, Boolean isAuthorized) {
-        this.user = user;
+        this.user = user.toString();
         this.userName = userName;
         this.email = email;
         this.isAuthorized = isAuthorized;
     }
 
-    public ObjectId getUser() {
+    public String getUser() {
         return user;
     }
 
     public void setUser(ObjectId user) {
-        this.user = user;
+        this.user = user.toString();
     }
 
     public String getUserName() {

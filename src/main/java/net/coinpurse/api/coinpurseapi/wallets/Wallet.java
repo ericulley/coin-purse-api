@@ -9,7 +9,7 @@ public class Wallet {
     @Id
     private ObjectId id;
 
-    private Long owner;
+    private String owner;
 
     private String coinSymbol;
 
@@ -20,17 +20,17 @@ public class Wallet {
     }
 
     // Constructor 2: All
-    public Wallet(ObjectId id, Long user, String coinSymbol, Double amountOwned) {
+    public Wallet(ObjectId id, ObjectId user, String coinSymbol, Double amountOwned) {
         this.id = id;
-        this.owner = user;
+        this.owner = user.toString();
         this.coinSymbol = coinSymbol;
         this.amountOwned = amountOwned;
     }
 
     // Constructor 3: No id for DB
-    public Wallet(Long user, String coinSymbol, Double amountOwned) {
+    public Wallet(ObjectId user, String coinSymbol, Double amountOwned) {
         this.id = new ObjectId();
-        this.owner = user;
+        this.owner = user.toString();
         this.coinSymbol = coinSymbol;
         this.amountOwned = amountOwned;
     }
@@ -47,12 +47,12 @@ public class Wallet {
 
     public void setId(ObjectId id) { this.id = id; }
 
-    public Long getOwner() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setOwner(Long user) {
-        this.owner = user;
+    public void setOwner(ObjectId user) {
+        this.owner = user.toString();
     }
 
     public String getCoinSymbol() {

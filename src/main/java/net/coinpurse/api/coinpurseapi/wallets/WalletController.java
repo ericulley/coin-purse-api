@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v2/wallets")
+@CrossOrigin
 public class WalletController {
 
     @Autowired
@@ -22,9 +23,9 @@ public class WalletController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Wallet>> getOneWallet(@PathVariable ObjectId id) {
+    public ResponseEntity<Wallet> getOneWallet(@PathVariable String id) {
         try {
-            return new ResponseEntity<Optional<Wallet>>(walletService.getWallet(id), HttpStatus.OK);
+            return new ResponseEntity<Wallet>(walletService.getWallet(id), HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("Error: " + e);
             return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
@@ -34,6 +35,7 @@ public class WalletController {
 
     @PostMapping()
     public ResponseEntity<Wallet> createWallet(@RequestBody Wallet newWallet) {
+        System.out.println("New Wallet: " + newWallet);
         try {
             return new ResponseEntity<Wallet>(walletService.createWallet(newWallet), HttpStatus.CREATED);
         } catch (Exception e) {

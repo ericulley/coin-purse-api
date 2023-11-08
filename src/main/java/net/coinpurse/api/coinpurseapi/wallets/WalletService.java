@@ -19,8 +19,15 @@ public class WalletService {
         return walletRepository.findAll();
     }
 
-    public Optional<Wallet> getWallet(ObjectId id) {
-        return walletRepository.findById(id);
+    public Wallet getWallet(String id) throws Exception {
+        System.out.println("PATH ID: " + id);
+        Optional<Wallet> optionalWallet = walletRepository.findWalletByOwner(id);
+        System.out.println("OPTIONAL WALLET: " + optionalWallet);
+        if (optionalWallet.isPresent()) {
+            return optionalWallet.get();
+        } else {
+            throw new Exception("Wallet could not be found.");
+        }
     }
 
     public Wallet createWallet(Wallet newWallet) {
