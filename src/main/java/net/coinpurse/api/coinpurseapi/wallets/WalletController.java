@@ -23,9 +23,9 @@ public class WalletController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Wallet> getOneWallet(@PathVariable String id) {
+    public ResponseEntity<Wallet[]> getWalletsByOwner(@PathVariable String id) {
         try {
-            return new ResponseEntity<Wallet>(walletService.getWallet(id), HttpStatus.OK);
+            return new ResponseEntity<Wallet[]>(walletService.getWalletsByOwner(id), HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("Error: " + e);
             return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
@@ -37,6 +37,9 @@ public class WalletController {
     public ResponseEntity<Wallet> createWallet(@RequestBody Wallet newWallet) {
         System.out.println("New Wallet: " + newWallet);
         try {
+//            if (newWallet.getIdString() == null) {
+//                newWallet.setStringId("null");
+//            }
             return new ResponseEntity<Wallet>(walletService.createWallet(newWallet), HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println("Error: " + e);

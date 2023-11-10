@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,18 +20,18 @@ public class WalletService {
         return walletRepository.findAll();
     }
 
-    public Wallet getWallet(String id) throws Exception {
-        System.out.println("PATH ID: " + id);
-        Optional<Wallet> optionalWallet = walletRepository.findWalletByOwner(id);
-        System.out.println("OPTIONAL WALLET: " + optionalWallet);
-        if (optionalWallet.isPresent()) {
-            return optionalWallet.get();
+    public Wallet[] getWalletsByOwner(String id) throws Exception {
+        Optional<Wallet[]> optionalWallets = walletRepository.findAllWalletsByOwner(id);
+        if (optionalWallets.isPresent()) {
+            Wallet[] wallets = optionalWallets.get();
+            return wallets;
         } else {
             throw new Exception("Wallet could not be found.");
         }
     }
 
     public Wallet createWallet(Wallet newWallet) {
+//        System.out.println("New Wallet: " + newWallet);
         return walletRepository.insert(newWallet);
     }
 
