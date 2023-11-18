@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>net.coin-purse</groupId>
-	<artifactId>coin-purse-api</artifactId>
+	<artifactId>api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>coin-purse-api</name>
 	<description>Coin-purse backend API</description>
